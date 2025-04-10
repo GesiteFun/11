@@ -1,0 +1,451 @@
+/* style.css */
+
+/* --- CSS Reset & Basic Styling --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif; /* Gunakan system font jika Nunito tidak tersedia/diimpor */
+    line-height: 1.6;
+    background-color: #f0f8ff; /* AliceBlue */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- Layout Utama --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- Header --- */
+.site-header {
+    background-color: #4a90e2; /* Bright Blue */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 100; /* Ensure header is above other content */
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; /* Remove padding from container inside header */
+}
+
+.site-title {
+    font-size: 2.2em; /* Slightly smaller for responsiveness */
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    padding-left: 5%; /* Add padding to align with container */
+}
+
+/* --- Banner --- */
+.hero-banner {
+    background: linear-gradient(to right, #ffcc33, #ff9900); /* Orange gradient */
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px; /* Adjusted padding */
+    margin-bottom: 30px;
+    border-radius: 8px;
+    /* Simple background pattern using SVG - less distracting */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-banner h1 {
+    font-size: 2.5em; /* Adjusted size */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.hero-banner p {
+    font-size: 1.1em; /* Adjusted size */
+}
+
+/* --- Filter --- */
+.filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.filter-section div {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section label {
+    font-weight: bold;
+    margin-right: 8px;
+    color: #555;
+}
+
+.filter-section select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* --- Game Grid --- */
+#game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding-bottom: 30px; /* Add some space at the bottom */
+}
+
+/* --- Game Card --- */
+.game-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make cards fill grid cell height */
+}
+
+.game-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Add slight scale on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.game-thumbnail {
+    height: 150px;
+    background-color: #e0e0e0; /* Default placeholder color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em; /* Make icon bigger */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5); /* Icon color */
+    background-size: cover; /* Ensure background images cover */
+    background-position: center;
+    position: relative; /* For potential icon overlay */
+}
+ /* Simple placeholder icons using background colors */
+.game-thumbnail[data-icon="add"] { background-color: #66ccff; } /* Light Blue */
+.game-thumbnail[data-icon="sub"] { background-color: #ff9999; } /* Light Red */
+.game-thumbnail[data-icon="mul"] { background-color: #99ff99; } /* Light Green */
+.game-thumbnail[data-icon="pattern"] { background-color: #ffcc99; } /* Light Orange */
+.game-thumbnail[data-icon="time"] { background-color: #cc99ff; } /* Light Purple */
+.game-thumbnail[data-icon="coin"] { background-color: #ffff99; } /* Light Yellow */
+.game-thumbnail[data-icon="place"] { background-color: #99ccff; }
+.game-thumbnail[data-icon="memory"] { background-color: #ff99cc; }
+.game-thumbnail[data-icon="odd"] { background-color: #99ffff; }
+.game-thumbnail[data-icon="frac"] { background-color: #ffcc66; }
+.game-thumbnail[data-icon="line"] { background-color: #66ffcc; }
+.game-thumbnail[data-icon="type"] { background-color: #ff6f6f; }
+.game-thumbnail[data-icon="make24"] { background-color: #6faaff; }
+.game-thumbnail[data-icon="shape"] { background-color: #ffc107; } /* Amber */
+.game-thumbnail[data-icon="area"] { background-color: #4caf50; } /* Green */
+.game-thumbnail[data-icon="div"] { background-color: #ff9800; } /* Orange */
+.game-thumbnail[data-icon="puzzle"] { background-color: #9c27b0; } /* Purple */
+.game-thumbnail[data-icon="estim"] { background-color: #795548; } /* Brown */
+.game-thumbnail[data-icon="kenken"] { background-color: #00bcd4; } /* Cyan */
+.game-thumbnail[data-icon="react"] { background-color: #e91e63; } /* Pink */
+.game-thumbnail[data-icon="default"] { background-color: #e0e0e0; } /* Default grey */
+
+.game-info {
+    padding: 15px;
+    flex-grow: 1; /* Allow info section to grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push tags to bottom */
+}
+
+.game-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.game-info p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4; /* Improve readability */
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+.game-tags {
+    margin-top: 10px; /* Space above tags */
+}
+
+.game-tags span {
+    display: inline-block;
+    background-color: #eee;
+    color: #555;
+    padding: 4px 10px; /* Slightly larger padding */
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    margin-top: 5px; /* Allow wrapping */
+}
+
+/* --- Modal --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Allow modal content to scroll */
+    background-color: rgba(0,0,0,0.6); /* Darker overlay */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5vh auto; /* Use vh for vertical centering */
+    padding: 30px 40px; /* More padding */
+    border: none; /* Remove default border */
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideIn 0.4s ease-out;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px; /* Closer to edge */
+    right: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1; /* Prevent extra spacing */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+#game-modal-title {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #4a90e2;
+    font-weight: 700;
+}
+
+#game-modal-description {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1.05em; /* Slightly larger */
+    line-height: 1.5;
+}
+
+#game-score {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 15px; /* Space below score */
+    color: #444;
+}
+
+#high-score {
+    font-weight: normal; /* Make high score label less prominent */
+    color: #666;
+}
+
+#game-area {
+    border: 1px solid #ddd; /* Lighter border */
+    min-height: 300px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative; /* Needed for absolute positioned elements within game */
+    overflow: hidden; /* Contain elements within game area */
+}
+
+.game-feedback {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.2em;
+    height: 30px; /* Reserve space to prevent layout shifts */
+    text-align: center;
+    transition: color 0.3s ease;
+}
+.feedback-correct { color: #5cb85c; } /* Green */
+.feedback-incorrect { color: #d9534f; } /* Red */
+
+.game-button,
+#restart-game-button {
+    background-color: #5cb85c; /* Green */
+    color: white;
+    padding: 10px 20px; /* Adjusted padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.05em; /* Adjusted size */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 15px; /* Space above buttons */
+    display: inline-block; /* Ensure buttons are inline */
+}
+
+.game-button:hover,
+#restart-game-button:hover {
+    background-color: #4cae4c; /* Darker green */
+}
+
+.game-button:active,
+#restart-game-button:active {
+    transform: scale(0.98); /* Press effect */
+}
+
+
+#restart-game-button {
+     background-color: #f0ad4e; /* Orange */
+     margin-left: 10px;
+}
+#restart-game-button:hover {
+     background-color: #ec971f; /* Darker orange */
+}
+
+/* --- Specific Game Styles (Keep consistent with JS element creation) --- */
+
+/* Addition Match & Generic Match Containers */
+.match-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; }
+.match-item { padding: 15px 20px; border: 2px solid #ccc; border-radius: 5px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s, transform 0.1s ease; user-select: none; /* Prevent text selection */ text-align: center; min-width: 80px; }
+.match-item.selected { background-color: #a0e7e5; border-color: #4a90e2; transform: scale(1.05); } /* Teal/Blue */
+.match-item.matched { background-color: #dcedc8; border-color: #8bc34a; cursor: default; opacity: 0.6; transform: scale(1); } /* Light Green */
+
+/* Find the Pattern */
+.pattern-display { font-size: 1.6em; margin-bottom: 20px; text-align: center; letter-spacing: 5px; font-weight: bold; color: #333; }
+.pattern-input-area { text-align: center; margin-top: 10px; }
+.pattern-input { padding: 10px; font-size: 1.2em; width: 100px; text-align: center; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;}
+/* Use .game-button class for pattern submit button */
+
+/* Telling Time */
+.clock-display { width: 200px; height: 200px; border: 5px solid #333; border-radius: 50%; margin: 20px auto; position: relative; background-color: #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+.hour-hand, .minute-hand, .second-hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom center; background-color: #333; border-radius: 3px 3px 0 0; }
+.hour-hand { width: 6px; height: 60px; transform: translateX(-50%) rotate(0deg); background-color: #444; }
+.minute-hand { width: 4px; height: 80px; transform: translateX(-50%) rotate(0deg); background-color: #555; }
+.second-hand { width: 2px; height: 85px; transform: translateX(-50%) rotate(0deg); background-color: #d9534f; } /* Optional second hand */
+.clock-center { width: 12px; height: 12px; background-color: red; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; border: 2px solid white;}
+.time-options { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+.time-option { padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; background-color: #eee; transition: background-color 0.2s, transform 0.1s ease; user-select: none;}
+.time-option:hover { background-color: #ddd; }
+.time-option:active { transform: scale(0.98); }
+.time-option:disabled { background-color: #f5f5f5; cursor: not-allowed; opacity: 0.7;}
+.time-option.correct { background-color: #90EE90 !important; border-color: #5cb85c; } /* Highlight correct on fail */
+
+/* Memory Cards */
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 400px; margin: 20px auto; }
+.memory-card { height: 80px; cursor: pointer; perspective: 1000px; /* For 3D flip effect */ position: relative; }
+.memory-card .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+.memory-card.is-flipped .card-inner { transform: rotateY(180deg); }
+.memory-card .card-face { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; /* Safari */ backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 5px; font-size: 1.6em; /* Adjust font size */ font-weight: bold; }
+.card-front { background-color: #4a90e2; color: white; }
+.card-back { background-color: #ffeb3b; color: #333; transform: rotateY(180deg); }
+.memory-card.is-matched .card-inner { /* Keep flipped */ transform: rotateY(180deg); }
+.memory-card.is-matched .card-back { background-color: #c8e6c9; border: 2px solid #8bc34a; } /* Light Green */
+.memory-card.is-matched { cursor: default; opacity: 0.7; }
+
+/* Fraction Match */
+.fraction-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; }
+.fraction-item { padding: 10px; border: 2px solid #ccc; border-radius: 5px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s, transform 0.1s ease; text-align: center; min-width: 100px; user-select: none; background-color: #fff; }
+.fraction-visual { width: 70px; height: 70px; border: 1px solid #555; margin: 10px auto 5px auto; position: relative; background-color: #fff; overflow: hidden; border-radius: 4px; /* Optional: circle for pie chart */ }
+.fraction-fill { position: absolute; bottom: 0; left: 0; width: 100%; background-color: #66ccff; transition: height 0.3s ease;} /* Light Blue */
+.fraction-text { font-size: 1.3em; font-weight: bold; margin-top: 5px; }
+.fraction-item.selected { background-color: #a0e7e5; border-color: #4a90e2; transform: scale(1.05); }
+.fraction-item.matched { background-color: #dcedc8; border-color: #8bc34a; cursor: default; opacity: 0.6; transform: scale(1); }
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Pushes footer to bottom */
+    width: 100%; /* Ensure footer spans full width */
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 992px) {
+    #game-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for medium screens */
+    }
+    .modal-content {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-title { font-size: 1.8em; padding-left: 3%;}
+    .hero-banner h1 { font-size: 2em; }
+    .hero-banner p { font-size: 1em; }
+    .filter-section { flex-direction: column; align-items: stretch; gap: 15px; }
+    .filter-section div { justify-content: space-between; } /* Space out label and select */
+    #game-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;}
+    .modal-content { width: 90%; margin: 8vh auto; padding: 20px 25px; }
+    #game-modal-title { font-size: 1.6em; }
+    .memory-grid { grid-template-columns: repeat(3, 1fr); max-width: 320px; } /* Adjust memory game grid */
+    .game-thumbnail { height: 120px; }
+    .fraction-item { min-width: 90px; }
+    .fraction-visual { width: 60px; height: 60px;}
+    .fraction-text { font-size: 1.2em; }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 15px; } /* Adjust base font size */
+    .container { width: 95%; }
+    .site-header .container { flex-direction: column; gap: 10px; padding-bottom: 10px;}
+    .site-title { text-align: center; padding-left: 0;}
+    .hero-banner { padding: 30px 15px; }
+    .hero-banner h1 { font-size: 1.8em; }
+    #game-grid { grid-template-columns: 1fr; gap: 20px;} /* Single column */
+    .game-card:hover { transform: translateY(-3px) scale(1.01); } /* Less dramatic hover on mobile */
+    .game-thumbnail { height: 140px; } /* Can be taller in single column */
+    .modal-content { width: 95%; margin: 5vh auto; padding: 15px 20px; }
+    #game-modal-title { font-size: 1.4em; }
+    #game-modal-description { font-size: 0.95em; }
+    .memory-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 280px;} /* Smaller memory grid */
+    .memory-card { height: 70px; }
+    .memory-card .card-face { font-size: 1.4em; }
+    .time-options { gap: 10px; }
+    .time-option { padding: 8px 12px; }
+    .fraction-container { flex-direction: column; align-items: center; } /* Stack fractions */
+    .game-button, #restart-game-button { width: calc(50% - 10px); /* Make buttons take half width */ margin: 10px 5px 0 5px; text-align: center; padding: 12px 5px;}
+    #restart-game-button { margin-left: 5px; }
+}
